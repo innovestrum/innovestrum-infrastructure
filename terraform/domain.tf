@@ -92,5 +92,9 @@ resource "google_clouddomains_registration" "apex" {
   # the registry side). Manual unlock required to ever destroy.
   lifecycle {
     prevent_destroy = true
+    # Post-registration drift: nameserver order changes between reads,
+    # contact/management state was written partially on first apply.
+    # All three are correctly set at the registry — manage via Console.
+    ignore_changes = [dns_settings, contact_settings, management_settings]
   }
 }
