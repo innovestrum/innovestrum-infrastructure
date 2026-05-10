@@ -1,0 +1,26 @@
+# Copy to terraform.tfvars (gitignored) and fill in real values before
+# `terraform apply`. Cloud Domains stores these as WHOIS data — public
+# visibility is gated by `privacy = "REDACTED_CONTACT_DATA"` in domain.tf,
+# but the registry (and Google) hold the unredacted version.
+
+registrant_email        = "you@example.com"
+registrant_phone_number = "+34600000000" # E.164 — country code, no spaces, no dashes
+
+registrant_postal_address = {
+  region_code         = "ES" # ISO-3166 alpha-2
+  postal_code         = "08001"
+  administrative_area = "Barcelona" # state/province; pass null where the country has none
+  locality            = "Barcelona"
+  address_lines       = ["Carrer Example 123, 4-1"]
+  recipients          = ["Your Full Legal Name"]
+}
+
+# All non-overridden aliases (see email_aliases default in variables.tf) forward here.
+email_forward_destination = "you-personal@gmail.com"
+
+# Override per alias if you want different forwarding rules per address.
+# Example:
+# email_aliases = {
+#   play     = "play-team@gmail.com"
+#   security = null   # null falls through to email_forward_destination
+# }
