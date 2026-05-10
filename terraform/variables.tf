@@ -68,8 +68,9 @@ variable "email_aliases" {
     billing = null
     press   = null
     # product / transactional
-    play    = null
-    noreply = null
+    play     = null
+    appstore = null
+    noreply  = null
     # compliance / technical
     legal      = null
     security   = null
