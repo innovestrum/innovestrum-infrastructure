@@ -62,8 +62,16 @@ variable "email_aliases" {
   description = "Map of local-part → destination override. Use null to forward to email_forward_destination."
   type        = map(string)
   default = {
-    play       = null
-    support    = null
+    # user-facing
+    hello   = null
+    support = null
+    billing = null
+    press   = null
+    # product / transactional
+    play    = null
+    noreply = null
+    # compliance / technical
+    legal      = null
     security   = null
     abuse      = null
     postmaster = null

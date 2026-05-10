@@ -3,8 +3,8 @@
 # — Terraform compares it before submitting the registration.
 #
 # After apply: state="REGISTRATION_PENDING" briefly, then "ACTIVE" within minutes.
-# Auto-renewal is on by default; transfer is locked to prevent accidental
-# transfer-out (unlock manually in the Console when intentionally migrating).
+# Auto-renewal is on by default. Transfer lock cannot be set at registration time —
+# enable it in the Console or via a separate `terraform apply` once the domain is ACTIVE.
 
 locals {
   # All three contact roles use the same data for a one-maintainer setup.
@@ -78,11 +78,6 @@ resource "google_clouddomains_registration" "apex" {
     custom_dns {
       name_servers = google_dns_managed_zone.apex.name_servers
     }
-  }
-
-  management_settings {
-    renewal_method      = "AUTOMATIC_RENEWAL"
-    transfer_lock_state = "LOCKED"
   }
 
   labels = {
