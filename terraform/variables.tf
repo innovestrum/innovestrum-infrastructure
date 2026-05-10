@@ -58,6 +58,18 @@ variable "email_forward_destination" {
   sensitive   = true
 }
 
+# --- Landing page parking ---
+
+variable "landing_host_ipv4" {
+  description = "IPv4 of the host serving the temporary innovestrum.com landing page (currently the dhcloud free-tier VM). Tracked for migration in issue #3."
+  type        = string
+
+  validation {
+    condition     = can(regex("^([0-9]{1,3}\\.){3}[0-9]{1,3}$", var.landing_host_ipv4))
+    error_message = "landing_host_ipv4 must be a dotted-quad IPv4 address."
+  }
+}
+
 variable "email_aliases" {
   description = "Map of local-part → destination override. Use null to forward to email_forward_destination."
   type        = map(string)

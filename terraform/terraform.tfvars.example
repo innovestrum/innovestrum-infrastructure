@@ -18,6 +18,10 @@ registrant_postal_address = {
 # All non-overridden aliases (see email_aliases default in variables.tf) forward here.
 email_forward_destination = "you-personal@gmail.com"
 
+# Public IPv4 of the host serving the "coming soon" landing page.
+# Temporarily parked on the dhcloud free-tier VM — see issue #3 for migration off.
+landing_host_ipv4 = "203.0.113.10"
+
 # Override per alias if you want different forwarding rules per address.
 # Example:
 # email_aliases = {
